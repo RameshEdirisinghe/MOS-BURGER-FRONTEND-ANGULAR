@@ -1,0 +1,209 @@
+.order-management {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f8f8;
+  height: 100vh;
+}
+
+h1 {
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.main-content {
+  display: flex;
+  gap: 20px;
+}
+
+.card-box {
+  flex: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  width: 190px;
+  height: 254px;
+  padding: 0.8em;
+  background: #fbf3dc;
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.card-img {
+  background-color: #ffcaa6;
+  height: 40%;
+  width: 100%;
+  border-radius: 0.5rem;
+  transition: 0.3s ease;
+}
+
+.card-img-sc {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+}
+
+.card-info {
+  padding-top: 10%;
+}
+
+.card-footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.text-title {
+  font-weight: 900;
+  font-size: 1.2em;
+  line-height: 1.5;
+  color: hsl(0, 0%, 15%);
+}
+
+.text-body {
+  font-size: 0.9em;
+  padding-bottom: 10px;
+  color: hsl(0, 0%, 15%);
+}
+
+.card-button {
+  border: 1px solid #252525;
+  display: flex;
+  padding: 0.3em;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: 0.3s ease-in-out;
+}
+
+.card-button:hover {
+  border: 1px solid #8bc34a;
+  background-color: #8bc34a;
+}
+
+.cart-box {
+  flex: 1;
+  background-color: #f5f2e2;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100%;
+}
+
+.cart-container {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.cartCard {
+  width: 100%;
+  height: 140px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  background-color: rgba(0, 0, 0, 0.362);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.icon-container {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffcaa6;
+  border-radius: 50%;
+}
+
+.icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.message-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex-grow: 1;
+}
+
+.message-text {
+  color: #000000;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.sub-text {
+  font-size: 14px;
+  color: #555;
+}
+
+.cross-icon {
+  width: 18px;
+  height: 18px;
+  color: #555;
+  cursor: pointer;
+}
+
+.footer-bar {
+  margin-top: 20px;
+  background-color: #f5f2e2;
+  border-top: 1px solid hsl(256, 12%, 30%);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 20px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.total-price,
+.received-amount,
+.change-amount {
+  font-size: 16px;
+  font-weight: bold;
+  color: hsl(256, 12%, 12%);
+  margin-right: 20px;
+}
+
+.received-amount input {
+  padding: 5px;
+  font-size: 16px;
+  width: 120px;
+  border: 1px solid hsl(256, 12%, 30%);
+  border-radius: 5px;
+  background-color: #fbf3dc;
+  color: hsl(256, 12%, 12%);
+}
+
+.print-bill-button {
+  background-color: #8bc34a;
+  color: #f9f6eb;
+  font-weight: bolder;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.print-bill-button:hover {
+  background-color: #7fee00;
+}

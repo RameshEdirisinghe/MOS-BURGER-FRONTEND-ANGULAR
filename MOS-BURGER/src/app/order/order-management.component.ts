@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-order-management',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './order-management.component.html',
   styleUrls: ['./order-management.component.css'],
 })
@@ -51,12 +54,14 @@ export class OrderManagementComponent {
   }
 
   calculateChange() {
-    const received = parseFloat((document.getElementById('received-amount-input') as HTMLInputElement).value || 0;
+    const receivedInput = document.getElementById('received-amount-input') as HTMLInputElement;
+    const received = parseFloat(receivedInput.value) || 0;
     this.changeAmount = received - this.totalAmount;
   }
 
   printBill() {
-    const received = parseFloat((document.getElementById('received-amount-input') as HTMLInputElement).value || 0;
+    const receivedInput = document.getElementById('received-amount-input') as HTMLInputElement;
+    const received = parseFloat(receivedInput.value) || 0;
     const change = this.changeAmount >= 0 ? this.changeAmount : 0;
 
     const billContent = `
