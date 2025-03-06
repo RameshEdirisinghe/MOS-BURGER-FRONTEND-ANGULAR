@@ -1,0 +1,84 @@
+<div class="product-management">
+    <h1>MOS-BURGERS</h1>
+    <h1>Product Management</h1>
+  
+    <!-- Add Product Form -->
+    <div class="add-product">
+      <h2>Add Product</h2>
+      <input type="text" [(ngModel)]="product.itemName" placeholder="Product Name" />
+      <input type="text" [(ngModel)]="product.des" placeholder="Product Description" />
+      <input type="number" [(ngModel)]="product.price" placeholder="Product Price" />
+      <input type="number" [(ngModel)]="product.qty" placeholder="Product Quantity" />
+      <input type="file" (change)="onFileSelected($event)" [disabled]="isUploading" />
+      <button class="upload" (click)="uploadImage()" [disabled]="!selectedFile || isUploading">
+        {{ isUploading ? 'Uploading...' : 'Upload Image' }}
+      </button>
+      <button class="primary" (click)="addProduct()" [disabled]="!product.imgUrl">Add Product</button>
+      <p *ngIf="error" class="error">{{ error }}</p>
+    </div>
+  
+    <!-- Search Product -->
+    <div class="search-product">
+      <h2>Search Product</h2>
+      <input type="text" [(ngModel)]="searchQuery" placeholder="Search by name" />
+      <button class="primary" (click)="searchProducts()">Search</button>
+    </div>
+  
+    <!-- Product List -->
+    <div class="product-list">
+      <h2>Product List</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Image</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td>
+              <ng-container *ngIf="editingProduct?.id === product.id; else viewName">
+                <input type="text" [(ngModel)]="editingProduct.itemName" />
+              </ng-container>
+              <ng-template #viewName>{{ product.itemName }}</ng-template>
+            </td>
+            <td>
+              <ng-container *ngIf="editingProduct?.id === product.id; else viewDescription">
+                <input type="text" [(ngModel)]="editingProduct.des" />
+              </ng-container>
+              <ng-template #viewDescription>{{ product.des }}</ng-template>
+            </td>
+            <td>
+              <ng-container *ngIf="editingProduct?.id === product.id; else viewPrice">
+                <input type="number" [(ngModel)]="editingProduct.price" />
+              </ng-container>
+              <ng-template #viewPrice>{{ product.price }}</ng-template>
+            </td>
+            <td>
+              <ng-container *ngIf="editingProduct?.id === product.id; else viewQty">
+                <input type="number" [(ngModel)]="editingProduct.qty" />
+              </ng-container>
+              <ng-template #viewQty>{{ product.qty }}</ng-template>
+            </td>
+            <td>
+              <img [src]="product.imgUrl" alt="Product Image" width="50" />
+            </td>
+            <td>
+              <ng-container *ngIf="editingProduct?.id === product.id; else editButtons">
+                <button class="primary" (click)="saveProduct()">Save</button>
+                <button class="secondary" (click)="cancelEdit()">Cancel</button>
+              </ng-container>
+              <ng-template #editButtons>
+                <button class="primary" (click)="editProduct(product)">Edit</button>
+                <button class="secondary" (click)="deleteProduct(product.id)">Delete</button>
+              </ng-template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
