@@ -2,14 +2,14 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './page/login/login.component';
 import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { ProductManagementComponent } from './page/dashboard/product/product.component';
-import { OrderManagementComponent } from './page/dashboard/order/order.component';
+import { PlaceOrderManagementComponent } from './page/dashboard/placeorder/placeorder.component';
 import { ReportComponent } from './page/dashboard/report/report.component';
-import { PlaceorderComponent } from './page/placeorder/placeorder.component';
+
 
 export const routes: Routes = [
     {
         path:"",
-        component: LoginComponent
+        component: PlaceOrderManagementComponent
     },
     {
         path:"login",
@@ -26,16 +26,13 @@ export const routes: Routes = [
             },
             {
                 path: "order",
-                component: OrderManagementComponent
+                component: PlaceOrderManagementComponent
             },
             {
                 path:"",
                 component: ReportComponent
             }
         ]
-    },
-    {
-        path:"placeholder",
-        component: PlaceorderComponent
     }
+ 
 ];

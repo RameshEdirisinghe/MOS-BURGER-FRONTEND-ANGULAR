@@ -4,13 +4,13 @@ import { CommonModule } from '@angular/common';
 
 
 @Component({
-  selector: 'app-order-management',
+  selector: 'app-placeorder-management',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './order.component.html',
-  styleUrls: ['./order.component.css'],
+  templateUrl: './placeorder.component.html',
+  styleUrls: ['./placeorder.component.css'],
 })
-export class OrderManagementComponent {
+export class PlaceOrderManagementComponent {
   allMeals: any[] = [];
   addCart: any[] = [];
   totalAmount = 0;
