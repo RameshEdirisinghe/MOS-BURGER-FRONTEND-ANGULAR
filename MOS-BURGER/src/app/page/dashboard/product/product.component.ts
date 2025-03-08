@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AwsS3Service } from '../services/s3';
+import { AwsS3Service } from '../../../services/s3';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-product-management',
   standalone: true,
   imports: [CommonModule, FormsModule, HttpClientModule],
-  templateUrl: './product-management.component.html',
-  styleUrls: ['./product-management.component.css'],
+  templateUrl: './product.component.html',
+  styleUrls: ['./product.component.css'],
 })
 export class ProductManagementComponent {
   products: any[] = [];
