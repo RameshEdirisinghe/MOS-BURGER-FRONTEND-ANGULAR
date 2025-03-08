@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AwsS3Service } from '../../../services/s3';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-product-management',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule],
+  imports: [CommonModule, FormsModule, HttpClientModule,RouterLink],
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css'],
 })
@@ -30,7 +31,9 @@ export class ProductManagementComponent {
 
   editingProduct: any = null; // Track the product being edited
 
-  constructor(private awsS3Service: AwsS3Service, private http: HttpClient) {}
+  constructor(private awsS3Service: AwsS3Service, private http: HttpClient) {
+    this.fetchProducts();
+  }
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
