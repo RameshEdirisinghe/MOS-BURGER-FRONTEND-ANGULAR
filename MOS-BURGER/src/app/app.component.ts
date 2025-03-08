@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { OnInit } from '@angular/core';
 import { initFlowbite } from 'flowbite';
-import { PlaceOrderManagementComponent } from './page/dashboard/placeorder/placeorder.component';
+
 
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,PlaceOrderManagementComponent],
+  imports: [CommonModule, RouterOutlet],
   templateUrl: `./app.component.html` 
   
 })
