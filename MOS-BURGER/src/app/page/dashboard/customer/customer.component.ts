@@ -1,35 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-customer',
   standalone: true,
-  imports: [CommonModule, FormsModule,RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, HttpClientModule],
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.css'],
 })
-export class CustomerComponent {
+export class CustomerComponent implements OnInit {
   searchQuery: string = '';
-  customers = [
-    {
-      customerId: '001',
-      customerName: 'John Doe',
-      phoneNumber: '123-456-7890',
-    },
-    {
-      customerId: '002',
-      customerName: 'Jane Smith',
-      phoneNumber: '987-654-3210',
-    },
-    {
-      customerId: '003',
-      customerName: 'Alice Johnson',
-      phoneNumber: '555-555-5555',
-    },
-  ];
-  filteredCustomers = this.customers;
+  customers: any[] = []; // Array to store customers fetched from the backend
+  filteredCustomers: any[] = []; // Array to store filtered customers
   editRow: any = null; // Track the row being edited
 
   // New customer form data
@@ -37,6 +22,25 @@ export class CustomerComponent {
     customerName: '',
     phoneNumber: '',
   };
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.fetchCustomers(); // Fetch customers from the backend when the component initializes
+  }
+
+  // Fetch all customers from the backend
+  fetchCustomers() {
+    this.http.get('http://localhost:8080/customer/all').subscribe(
+      (response: any) => {
+        this.customers = response;
+        this.filteredCustomers = this.customers; // Initialize filteredCustomers
+      },
+      (error) => {
+        console.error('Failed to fetch customers:', error);
+      }
+    );
+  }
 
   // Filter customers based on search query
   filterCustomers() {
@@ -52,25 +56,34 @@ export class CustomerComponent {
   // Add a new customer
   addCustomer() {
     if (this.newCustomer.customerName && this.newCustomer.phoneNumber) {
-      const newCustomer = {
-        customerId: (this.customers.length + 1).toString().padStart(3, '0'), // Generate a new ID
-        customerName: this.newCustomer.customerName,
-        phoneNumber: this.newCustomer.phoneNumber,
-      };
-      this.customers.push(newCustomer);
-      this.filteredCustomers = this.customers; // Update the filtered list
-      this.newCustomer = { customerName: '', phoneNumber: '' }; // Reset the form
+      this.http.post('http://localhost:8080/customer/add', this.newCustomer).subscribe(
+        (response: any) => {
+          this.fetchCustomers(); // Refresh the customer list after adding
+          this.newCustomer = { customerName: '', phoneNumber: '' }; // Reset the form
+        },
+        (error) => {
+          console.error('Failed to add customer:', error);
+        }
+      );
     }
   }
 
   // Start editing a row
   startEdit(customer: any) {
-    this.editRow = customer;
+    this.editRow = { ...customer }; // Create a copy of the customer object
   }
 
   // Save edited row
   saveEdit(customer: any) {
-    this.editRow = null; // Exit edit mode
+    this.http.put('http://localhost:8080/customer/update', this.editRow).subscribe(
+      (response: any) => {
+        this.fetchCustomers(); // Refresh the customer list after updating
+        this.editRow = null; // Exit edit mode
+      },
+      (error) => {
+        console.error('Failed to update customer:', error);
+      }
+    );
   }
 
   // Cancel editing
@@ -80,7 +93,13 @@ export class CustomerComponent {
 
   // Delete customer
   deleteCustomer(customer: any) {
-    this.customers = this.customers.filter((c) => c.customerId !== customer.customerId);
-    this.filteredCustomers = this.customers; // Update the filtered list
+    this.http.delete(`http://localhost:8080/customer/delete/${customer.id}`).subscribe(
+      (response: any) => {
+        this.fetchCustomers(); // Refresh the customer list after deleting
+      },
+      (error) => {
+        console.error('Failed to delete customer:', error);
+      }
+    );
   }
 }
