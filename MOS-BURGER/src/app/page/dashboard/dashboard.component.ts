@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CommonModule } from '@angular/common'; // Import CommonModule
+import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true, // Ensure the component is standalone
-  imports: [CommonModule, RouterLink], // Add CommonModule here
+  standalone: true, 
+  imports: [CommonModule, RouterLink],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  last5Orders: any[] = []; // Array to store the last 5 orders
+  last5Orders: any[] = []; 
   lastMonthOrderCount: any = 0;
   AllOrders  = 0;
   AllCustomers = 0;

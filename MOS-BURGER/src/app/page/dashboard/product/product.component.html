@@ -1,5 +1,5 @@
 <div class="min-h-screen bg-gradient-to-br from-[#FFDAB9]/50 to-[#B22222]/50 backdrop-blur-sm">
-  <!-- Left Sidebar (unchanged) -->
+
   <aside class="bg-gradient-to-br from-gray-800 to-gray-900 -translate-x-80 fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0">
       
     <div class="relative border-b border-white/20">
@@ -87,13 +87,11 @@
     </div>
 </aside>
 
-  <!-- Main Content -->
+
   <div class="p-4 xl:ml-80">
-    <!-- Add Product Form -->
     <div class="mb-4 p-6 bg-gray-800 rounded-lg">
       <h2 class="text-white text-lg font-semibold mb-4">Add New Product</h2>
       <form (ngSubmit)="addProduct()" class="space-y-4">
-        <!-- Product Name and Description in the same row -->
         <div class="grid grid-cols-2 gap-4">
           <div>
             <label for="itemName" class="block text-sm font-medium text-white">Product Name</label>
@@ -121,7 +119,7 @@
           </div>
         </div>
 
-        <!-- Price and Quantity in the same row -->
+  
         <div class="grid grid-cols-2 gap-4">
           <div>
             <label for="price" class="block text-sm font-medium text-white">Price</label>
@@ -149,7 +147,7 @@
           </div>
         </div>
 
-        <!-- Image Upload -->
+       
         <div>
           <label for="image" class="block text-sm font-medium text-white">Image</label>
           <input
@@ -161,7 +159,6 @@
           />
         </div>
 
-        <!-- Buttons -->
         <div class="flex justify-end gap-4">
           <button
             type="button"
@@ -198,7 +195,7 @@
       </button>
     </div>
 
-    <!-- Product List -->
+    
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg max-h-[429px] overflow-y-auto">
       <table class="w-full text-sm text-left rtl:text-right text-gray-300">
         <thead class="text-xs uppercase bg-gray-800 sticky top-0">
@@ -216,7 +213,7 @@
             *ngFor="let product of products"
             class="bg-gray-700 border-b border-gray-600 hover:bg-gray-800 text-white"
           >
-            <!-- Name (Editable) -->
+            <!-- Name -->
             <td class="px-6 py-4">
               <ng-container *ngIf="editingProduct?.id === product.id; else viewName">
                 <input
@@ -228,7 +225,7 @@
               <ng-template #viewName>{{ product.itemName }}</ng-template>
             </td>
 
-            <!-- Description (Editable) -->
+            <!-- Description -->
             <td class="px-6 py-4">
               <ng-container *ngIf="editingProduct?.id === product.id; else viewDescription">
                 <input
@@ -240,7 +237,7 @@
               <ng-template #viewDescription>{{ product.des }}</ng-template>
             </td>
 
-            <!-- Price (Editable) -->
+            <!-- Price  -->
             <td class="px-6 py-4">
               <ng-container *ngIf="editingProduct?.id === product.id; else viewPrice">
                 <input
@@ -252,7 +249,7 @@
               <ng-template #viewPrice>{{ product.price }}</ng-template>
             </td>
 
-            <!-- Quantity (Editable) -->
+            <!-- Quantity  -->
             <td class="px-6 py-4">
               <ng-container *ngIf="editingProduct?.id === product.id; else viewQty">
                 <input
@@ -264,7 +261,7 @@
               <ng-template #viewQty>{{ product.qty }}</ng-template>
             </td>
 
-            <!-- Image (Non-editable) -->
+            <!-- Image -->
             <td class="px-6 py-4">
               <img [src]="product.imgUrl" alt="Product Image" class="w-12 h-12 rounded-lg" />
             </td>

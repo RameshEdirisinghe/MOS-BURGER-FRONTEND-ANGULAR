@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LoginService {
-  private apiUrl = 'http://localhost:8080/user/login'; // Replace with your backend login endpoint
+  private apiUrl = 'http://localhost:8080/user/login'; 
 
   constructor(private http: HttpClient) {}
 

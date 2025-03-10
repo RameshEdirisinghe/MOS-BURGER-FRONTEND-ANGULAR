@@ -13,11 +13,11 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class CustomerComponent implements OnInit {
   searchQuery: string = '';
-  customers: any[] = []; // Array to store customers fetched from the backend
-  filteredCustomers: any[] = []; // Array to store filtered customers
-  editRow: any = null; // Track the row being edited
+  customers: any[] = []; 
+  filteredCustomers: any[] = []; 
+  editRow: any = null; 
 
-  // New customer form data
+  
   newCustomer = {
     customerName: '',
     phoneNumber: '',
@@ -26,15 +26,15 @@ export class CustomerComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.fetchCustomers(); // Fetch customers from the backend when the component initializes
+    this.fetchCustomers(); 
   }
 
-  // Fetch all customers from the backend
+  
   fetchCustomers() {
     this.http.get('http://localhost:8080/customer/all').subscribe(
       (response: any) => {
         this.customers = response;
-        this.filteredCustomers = this.customers; // Initialize filteredCustomers
+        this.filteredCustomers = this.customers;
       },
       (error) => {
         console.error('Failed to fetch customers:', error);
@@ -42,7 +42,7 @@ export class CustomerComponent implements OnInit {
     );
   }
 
-  // Filter customers based on search query
+
   filterCustomers() {
     if (this.searchQuery.trim() === '') {
       this.filteredCustomers = this.customers;
@@ -53,13 +53,13 @@ export class CustomerComponent implements OnInit {
     }
   }
 
-  // Add a new customer
+
   addCustomer() {
     if (this.newCustomer.customerName && this.newCustomer.phoneNumber) {
       this.http.post('http://localhost:8080/customer/add', this.newCustomer).subscribe(
         (response: any) => {
-          this.fetchCustomers(); // Refresh the customer list after adding
-          this.newCustomer = { customerName: '', phoneNumber: '' }; // Reset the form
+          this.fetchCustomers(); 
+          this.newCustomer = { customerName: '', phoneNumber: '' }; 
         },
         (error) => {
           console.error('Failed to add customer:', error);
@@ -68,17 +68,15 @@ export class CustomerComponent implements OnInit {
     }
   }
 
-  // Start editing a row
   startEdit(customer: any) {
-    this.editRow = { ...customer }; // Create a copy of the customer object
+    this.editRow = { ...customer }; 
   }
 
-  // Save edited row
   saveEdit(customer: any) {
     this.http.put('http://localhost:8080/customer/update', this.editRow).subscribe(
       (response: any) => {
-        this.fetchCustomers(); // Refresh the customer list after updating
-        this.editRow = null; // Exit edit mode
+        this.fetchCustomers(); 
+        this.editRow = null; 
       },
       (error) => {
         console.error('Failed to update customer:', error);
@@ -86,16 +84,15 @@ export class CustomerComponent implements OnInit {
     );
   }
 
-  // Cancel editing
+ 
   cancelEdit() {
-    this.editRow = null; // Exit edit mode
+    this.editRow = null; 
   }
 
-  // Delete customer
   deleteCustomer(customer: any) {
     this.http.delete(`http://localhost:8080/customer/delete/${customer.id}`).subscribe(
       (response: any) => {
-        this.fetchCustomers(); // Refresh the customer list after deleting
+        this.fetchCustomers(); 
       },
       (error) => {
         console.error('Failed to delete customer:', error);

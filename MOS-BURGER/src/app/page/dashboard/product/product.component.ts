@@ -29,7 +29,7 @@ export class ProductManagementComponent {
 
  
 
-  editingProduct: any = null; // Track the product being edited
+  editingProduct: any = null; 
 
   constructor(private awsS3Service: AwsS3Service, private http: HttpClient) {
     this.fetchProducts();
@@ -112,23 +112,22 @@ export class ProductManagementComponent {
     );
   }
 
-  // Enable editing for a product
+
   editProduct(product: any) {
     this.editingProduct = { ...product }; // Create a copy of the product for editing
   }
 
-  // Cancel editing
+
   cancelEdit() {
     this.editingProduct = null;
   }
 
-  // Save updated product
   saveProduct() {
     this.http.put(`http://localhost:8080/item/update/${this.editingProduct.id}`, this.editingProduct).subscribe(
       (response) => {
         alert('Product updated successfully!');
         this.fetchProducts();
-        this.editingProduct = null; // Reset editing state
+        this.editingProduct = null;
       },
       (error) => {
         this.error = 'Failed to update product';
