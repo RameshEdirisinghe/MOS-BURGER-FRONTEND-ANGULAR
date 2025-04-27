@@ -12,6 +12,7 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./placeorder.component.css'],
 })
 export class PlaceOrderManagementComponent {
+  order: any[] = [];
   allMeals: any[] = [];
   addCart: any[] = [];
   totalAmount = 0;
@@ -112,5 +113,17 @@ export class PlaceOrderManagementComponent {
       printWindow.document.close();
       printWindow.print();
     }
+    this.placeOrder();
+  }
+  placeOrder() {
+    this.http.post('http://localhost:8080/order/place-order', this.order).subscribe(
+      (response: any) => {
+        
+        
+      },
+      (error) => {
+        console.error('Failed to add customer:', error);
+      }
+    );
   }
 }

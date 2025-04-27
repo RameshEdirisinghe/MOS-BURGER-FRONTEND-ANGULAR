@@ -124,14 +124,14 @@ export class ProductManagementComponent {
 
   saveProduct() {
     this.http.put(`http://localhost:8080/item/update/${this.editingProduct.id}`, this.editingProduct).subscribe(
-      (response) => {
-        alert('Product updated successfully!');
-        this.fetchProducts();
-        this.editingProduct = null;
-      },
-      (error) => {
-        this.error = 'Failed to update product';
-      }
+        (response) => {
+          alert('Product updated successfully!');
+          this.fetchProducts();
+          this.editingProduct = null;
+        },
+        (error) => {
+          this.error = 'Failed to update product';
+        }
     );
   }
 

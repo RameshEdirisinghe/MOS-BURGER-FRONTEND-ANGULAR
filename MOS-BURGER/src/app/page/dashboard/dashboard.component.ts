@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
 
   // Fetch the last 5 orders
   fetchLast5Orders() {
-    this.http.get('http://localhost:8080/order/getFive').subscribe(
+    this.http.get('http://localhost:8080/login/facebook').subscribe(
       (response: any) => {
         this.last5Orders = response;
       },
